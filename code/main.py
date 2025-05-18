@@ -38,6 +38,14 @@ class Player(pygame.sprite.Sprite):
             self.laser_shoot_time = pygame.time.get_ticks()
             laser_sound.play()
 
+        if self.rect.right >= WINDOW_WIDTH:
+            self.rect.right = WINDOW_WIDTH
+        if self.rect.left <= 0:
+            self.rect.left = 0
+        if self.rect.bottom >= WINDOW_HEIGHT:
+            self.rect.bottom = WINDOW_HEIGHT
+        if self.rect.top <= 0:
+            self.rect.top = 0
         self.laser_timer()
     
 class Star(pygame.sprite.Sprite):
@@ -178,8 +186,8 @@ while running:
     
     # draw the game
     display_surface.fill("#3a2e3f")
-    all_sprites.draw(display_surface)
     display_score()
+    all_sprites.draw(display_surface)
  
     pygame.display.update()
 
